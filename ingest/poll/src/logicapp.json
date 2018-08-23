@@ -1,0 +1,484 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "actions": {
+    "Condition": {
+      "type": "If",
+      "expression": {
+        "and": [
+          {
+            "equals": [
+              "@outputs('Current')['statusCode']",
+              200
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "Set_CurrentResult": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "CurrentResult",
+            "value": "@json(replace(string(json(xml(trim(body('Current'))))), '\"@', '\"'))"
+          },
+          "runAfter": {
+            "Set_RequestStatus": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Set_CurrentResultXML": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "CurrentResultXML",
+            "value": "@{body('Current')}"
+          },
+          "runAfter": {}
+        },
+        "Set_FirstSequence": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "FirstSequence",
+            "value": "@int(variables('CurrentResult').MTConnectStreams.Header.firstSequence)"
+          },
+          "runAfter": {
+            "Set_NextSequence": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Set_LastSequence": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "FirstSequence",
+            "value": "@int(variables('CurrentResult').MTConnectStreams.Header.lastSequence)"
+          },
+          "runAfter": {
+            "Set_FirstSequence": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Set_NextSequence": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "NextSequence",
+            "value": "@int(variables('CurrentResult').MTConnectStreams.Header.nextSequence)"
+          },
+          "runAfter": {
+            "Set_CurrentResult": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Set_RequestStatus": {
+          "type": "SetVariable",
+          "inputs": {
+            "name": "RequestStatus",
+            "value": "@outputs('Current')['statusCode']"
+          },
+          "runAfter": {
+            "Set_CurrentResultXML": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Until": {
+          "type": "Until",
+          "expression": "@not(equals(variables('RequestStatus'), 200))",
+          "limit": {
+            "count": 60,
+            "timeout": "PT1H"
+          },
+          "actions": {
+            "Create_XML_Blob": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "body": "@variables('CurrentResultXML')",
+                "path": "/datasets/default/files",
+                "queries": {
+                  "folderPath": "/streams",
+                  "name": "@{concat(variables('CurrentResult').MTConnectStreams.Header.creationTime, '.xml')}",
+                  "queryParametersSingleEncoded": true
+                }
+              },
+              "runAfter": {
+                "Create_stream_blob": [
+                  "Succeeded"
+                ]
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Create_stream_blob": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "body": "@variables('CurrentResult').MTConnectStreams",
+                "path": "/datasets/default/files",
+                "queries": {
+                  "folderPath": "/streamsjson",
+                  "name": "@{replace(replace(variables('CurrentResult').MTConnectStreams.Header.creationTime, '-', ''), ':', '')}",
+                  "queryParametersSingleEncoded": true
+                }
+              },
+              "runAfter": {},
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Delay": {
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 2,
+                  "unit": "Minute"
+                }
+              },
+              "runAfter": {
+                "Put_a_message_on_a_queue": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Put_a_message_on_a_queue": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azurequeues']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "body": "@{concat(variables('CurrentResult').MTConnectStreams.Header.creationTime, '.xml')}",
+                "path": "/@{encodeURIComponent('smssamples')}/messages"
+              },
+              "runAfter": {
+                "Create_XML_Blob": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Sample": {
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "https://smstestbed.nist.gov/vds/sample?from=@{variables('NextSequence')}"
+              },
+              "runAfter": {
+                "Delay": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_CurrentResultXML_from_Sample": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "CurrentResultXML",
+                "value": "@{body('Sample')}"
+              },
+              "runAfter": {
+                "Sample": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_FirstSequence_from_Sample": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "FirstSequence",
+                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.firstSequence)"
+              },
+              "runAfter": {
+                "Set_NextSequence_from_Sample": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_LastSequence_from_Sample": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "LastSequence",
+                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.lastSequence)"
+              },
+              "runAfter": {
+                "Set_FirstSequence_from_Sample": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_NextSequence_from_Sample": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "NextSequence",
+                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.nextSequence)"
+              },
+              "runAfter": {
+                "Set_sample_result": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_Sample_status": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "RequestStatus",
+                "value": "@outputs('Sample')['statusCode']"
+              },
+              "runAfter": {
+                "Set_CurrentResultXML_from_Sample": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Set_sample_result": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "CurrentResult",
+                "value": "@json(replace(string(json(xml(trim(body('Sample'))))), '\"@', '\"'))"
+              },
+              "runAfter": {
+                "Set_Sample_status": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Set_LastSequence": [
+              "Succeeded"
+            ]
+          }
+        }
+      },
+      "runAfter": {
+        "Initialize_LastSequence": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Create_blob": {
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['azureblob']['connectionId']"
+          }
+        },
+        "method": "post",
+        "body": "@variables('ProbeResult')",
+        "path": "/datasets/default/files",
+        "queries": {
+          "folderPath": "/samples",
+          "name": "probe",
+          "queryParametersSingleEncoded": true
+        }
+      },
+      "runAfter": {
+        "Initialize_ProbeResult": [
+          "Succeeded"
+        ]
+      },
+      "runtimeConfiguration": {
+        "contentTransfer": {
+          "transferMode": "Chunked"
+        }
+      }
+    },
+    "Current": {
+      "type": "Http",
+      "inputs": {
+        "method": "GET",
+        "uri": "https://smstestbed.nist.gov/vds/current"
+      },
+      "runAfter": {
+        "Record_probe_request_for_devices": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_CurrentResult": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "CurrentResult",
+            "type": "Object",
+            "value": {}
+          }
+        ]
+      },
+      "runAfter": {
+        "Initialize_CurrentResultXML": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_CurrentResultXML": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "CurrentResultXML",
+            "type": "String",
+            "value": "\"\""
+          }
+        ]
+      },
+      "runAfter": {
+        "Current": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_FirstSequence": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "FirstSequence",
+            "type": "Integer",
+            "value": 0
+          }
+        ]
+      },
+      "runAfter": {
+        "Initialize_RequestStatus": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_LastSequence": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "LastSequence",
+            "type": "Integer",
+            "value": 0
+          }
+        ]
+      },
+      "runAfter": {
+        "Initialize_FirstSequence": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_NextSequence": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "NextSequence",
+            "type": "Integer",
+            "value": 0
+          }
+        ]
+      },
+      "runAfter": {
+        "Initialize_CurrentResult": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_ProbeResult": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "ProbeResult",
+            "type": "Object",
+            "value": "@json(replace(string(json(xml(trim(body('Probe'))))), '\"@', '\"'))"
+          }
+        ]
+      },
+      "runAfter": {
+        "Probe": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Initialize_RequestStatus": {
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "RequestStatus",
+            "type": "Integer",
+            "value": 500
+          }
+        ]
+      },
+      "runAfter": {
+        "Initialize_NextSequence": [
+          "Succeeded"
+        ]
+      }
+    },
+    "Probe": {
+      "type": "Http",
+      "inputs": {
+        "method": "GET",
+        "uri": "https://smstestbed.nist.gov/vds/probe",
+        "headers": {
+          "Content-Type": "application/xml"
+        }
+      },
+      "runAfter": {}
+    },
+    "Record_probe_request_for_devices": {
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['documentdb']['connectionId']"
+          }
+        },
+        "method": "post",
+        "body": {
+          "devices": "@variables('ProbeResult').MTConnectDevices.Devices",
+          "id": "@variables('ProbeResult').MTConnectDevices.Header.creationTime"
+        },
+        "path": "/dbs/@{encodeURIComponent('smsdata')}/colls/@{encodeURIComponent('devices')}/docs"
+      },
+      "runAfter": {
+        "Create_blob": [
+          "Succeeded"
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "$connections": {
+      "defaultValue": {},
+      "type": "Object"
+    }
+  },
+  "triggers": {
+    "Recurrence": {
+      "type": "Recurrence",
+      "recurrence": {
+        "frequency": "Hour",
+        "interval": 1
+      }
+    }
+  },
+  "contentVersion": "1.0.0.0",
+  "outputs": {}
+}
