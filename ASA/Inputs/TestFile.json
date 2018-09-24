@@ -1,0 +1,8 @@
+﻿{
+  "InputAlias": "SamplesLocal",
+  "Type": "Data Stream",
+  "Format": "Csv",
+  "FilePath": "C:\\Projects\\IoTInsights\\ASA\\Inputs\\samples.typed.csv",
+  "Sample": "PartitionKey,RowKey,Timestamp,Component,ComponentId,ComponentName,DeviceId,DeviceName,EventEnqueuedUtcTime,EventProcessedUtcTime,HourWindow,Id,PartitionId,SampleDataItemId,SampleDuration,SampleDurationSpecified,SampleName,SampleSequence,SampleTimestamp,SampleType,SampleValue,SampleSubtype",
+  "ScriptType": "InputMock"
+}

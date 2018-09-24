@@ -1,0 +1,30 @@
+﻿{
+  "EventHubProperties": null,
+  "BlobStorageProperties": null,
+  "SQLDatabaseProperties": null,
+  "TableStorageProperties": {
+    "AccountKey": null,
+    "AccountName": "devstoreaccount1",
+    "BatchSize": 10,
+    "ColumnsToRemove": null,
+    "PartitionKey": "PartitionKey",
+    "RowKey": "RowKey",
+    "Table": "samples"
+  },
+  "ServiceBusQueueProperties": null,
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "PowellBIProperties": null,
+  "AzureDataLakeStoreProperties": null,
+  "AzureFunctionProperties": null,
+  "DataSourceCredentialDomain": "141d3665-d81a-41ce-a090-7763a551a5e1.StreamAnalyticsCredential",
+  "Name": "TestSink",
+  "DataSourceType": "Table Storage",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "ScriptType": "Output"
+}

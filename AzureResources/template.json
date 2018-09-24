@@ -1,0 +1,2470 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "databaseAccounts_smstestsmsdocs_name": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "servers_smstestsmsdata_name": {
+            "defaultValue": "smstestsmsdata",
+            "type": "String"
+        },
+        "workflows_ReadSMS_name": {
+            "defaultValue": "ReadSMS",
+            "type": "String"
+        },
+        "connections_azureblob_name": {
+            "defaultValue": "azureblob",
+            "type": "String"
+        },
+        "connections_office365_name": {
+            "defaultValue": "office365",
+            "type": "String"
+        },
+        "connections_documentdb_name": {
+            "defaultValue": "documentdb",
+            "type": "String"
+        },
+        "connections_azurequeues_name": {
+            "defaultValue": "azurequeues",
+            "type": "String"
+        },
+        "serverfarms_CentralUSPlan_name": {
+            "defaultValue": "CentralUSPlan",
+            "type": "String"
+        },
+        "components_smsprocess_name": {
+            "defaultValue": "smsprocess",
+            "type": "String"
+        },
+        "namespaces_smsevents_ns_name": {
+            "defaultValue": "smsevents-ns",
+            "type": "String"
+        },
+        "components_smssampleparse_name": {
+            "defaultValue": "smssampleparse",
+            "type": "String"
+        },
+        "namespaces_smssampleevents_name": {
+            "defaultValue": "smssampleevents",
+            "type": "String"
+        },
+        "storageAccounts_smstestsmsstore_name": {
+            "defaultValue": "smstestsmsstore",
+            "type": "String"
+        },
+        "servers_smsanalysis_name": {
+            "defaultValue": "smsanalysis",
+            "type": "String"
+        },
+        "integrationAccounts_SMSTestBed_name": {
+            "defaultValue": "SMSTestBed",
+            "type": "String"
+        },
+        "storageAccounts_smstestdiagstore_name": {
+            "defaultValue": "smstestdiagstore",
+            "type": "String"
+        },
+        "streamingjobs_testjob_name": {
+            "defaultValue": "testjob",
+            "type": "String"
+        },
+        "databaseAccounts_smstestsmsdocs_name_1": {
+            "defaultValue": "smstestsmsdocs",
+            "type": "String"
+        },
+        "environments_smstsi_name": {
+            "defaultValue": "smstsi",
+            "type": "String"
+        },
+        "streamingjobs_processsms_name": {
+            "defaultValue": "processsms",
+            "type": "String"
+        },
+        "advisors_DropIndex_name": {
+            "defaultValue": "DropIndex",
+            "type": "String"
+        },
+        "keys_ServiceManaged_name": {
+            "defaultValue": "ServiceManaged",
+            "type": "String"
+        },
+        "advisors_CreateIndex_name": {
+            "defaultValue": "CreateIndex",
+            "type": "String"
+        },
+        "databases_smstestsmsdata_name": {
+            "defaultValue": "smstestsmsdata",
+            "type": "String"
+        },
+        "environments_smstesttsisandbox_name": {
+            "defaultValue": "smstesttsisandbox",
+            "type": "String"
+        },
+        "registries_smstestdockerregistry_name": {
+            "defaultValue": "smstestdockerregistry",
+            "type": "String"
+        },
+        "advisors_DefragmentIndex_name": {
+            "defaultValue": "DefragmentIndex",
+            "type": "String"
+        },
+        "auditingPolicies_Default_name": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "advisors_ForceLastGoodPlan_name": {
+            "defaultValue": "ForceLastGoodPlan",
+            "type": "String"
+        },
+        "advisors_DbParameterization_name": {
+            "defaultValue": "DbParameterization",
+            "type": "String"
+        },
+        "encryptionProtector_current_name": {
+            "defaultValue": "current",
+            "type": "String"
+        },
+        "containerGroups_flattenadnpostsms_name": {
+            "defaultValue": "flattenadnpostsms",
+            "type": "String"
+        },
+        "firewallRules_Kate's_IP_(Home)_name": {
+            "defaultValue": "Kate's IP (Home)",
+            "type": "String"
+        },
+        "eventhubs_samplestsihub_name": {
+            "defaultValue": "samplestsihub",
+            "type": "String"
+        },
+        "eventhubs_smsflatevents_name": {
+            "defaultValue": "smsflatevents",
+            "type": "String"
+        },
+        "eventhubs_smsflatsamples_name": {
+            "defaultValue": "smsflatsamples",
+            "type": "String"
+        },
+        "inputs_EventHubIn_name": {
+            "defaultValue": "EventHubIn",
+            "type": "String"
+        },
+        "outputs_eventsBlob_name": {
+            "defaultValue": "eventsBlob",
+            "type": "String"
+        },
+        "eventhubs_smsflatconditions_name": {
+            "defaultValue": "smsflatconditions",
+            "type": "String"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "defaultValue": "AllowAllWindowsAzureIps",
+            "type": "String"
+        },
+        "outputs_eventsTable_name": {
+            "defaultValue": "eventsTable",
+            "type": "String"
+        },
+        "outputs_samplesBlob_name": {
+            "defaultValue": "samplesBlob",
+            "type": "String"
+        },
+        "outputs_cosmosEvents_name": {
+            "defaultValue": "cosmosEvents",
+            "type": "String"
+        },
+        "outputs_samplesTable_name": {
+            "defaultValue": "samplesTable",
+            "type": "String"
+        },
+        "advisors_DropIndex_name_1": {
+            "defaultValue": "DropIndex",
+            "type": "String"
+        },
+        "outputs_cosmosSamples_name": {
+            "defaultValue": "cosmosSamples",
+            "type": "String"
+        },
+        "outputs_samplestsihub_name": {
+            "defaultValue": "samplestsihub",
+            "type": "String"
+        },
+        "eventsources_SMSSamples_name": {
+            "defaultValue": "SMSSamples",
+            "type": "String"
+        },
+        "advisors_CreateIndex_name_1": {
+            "defaultValue": "CreateIndex",
+            "type": "String"
+        },
+        "auditingPolicies_Default_name_1": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "databases_master_name": {
+            "defaultValue": "master",
+            "type": "String"
+        },
+        "inputs_EventHubEventsIn_name": {
+            "defaultValue": "EventHubEventsIn",
+            "type": "String"
+        },
+        "outputs_conditionsTable_name": {
+            "defaultValue": "conditionsTable",
+            "type": "String"
+        },
+        "geoBackupPolicies_Default_name": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "inputs_EventHubConditions_name": {
+            "defaultValue": "EventHubConditions",
+            "type": "String"
+        },
+        "schemas_MTConnectError_1.3_1.0_name": {
+            "defaultValue": "MTConnectError_1.3_1.0",
+            "type": "String"
+        },
+        "schemas_MTConnectAssets_1.3_1.0_name": {
+            "defaultValue": "MTConnectAssets_1.3_1.0",
+            "type": "String"
+        },
+        "advisors_DefragmentIndex_name_1": {
+            "defaultValue": "DefragmentIndex",
+            "type": "String"
+        },
+        "auditingPolicies_Default_name_2": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "schemas_MTConnectDevices_1.3_1.0_name": {
+            "defaultValue": "MTConnectDevices_1.3_1.0",
+            "type": "String"
+        },
+        "schemas_MTConnectStreams_1.3_1.0_name": {
+            "defaultValue": "MTConnectStreams_1.3_1.0",
+            "type": "String"
+        },
+        "geoBackupPolicies_Default_name_1": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "firewallRules_ClientIPAddress_2018_9_11_9_58_25_name": {
+            "defaultValue": "ClientIPAddress_2018-9-11_9-58-25",
+            "type": "String"
+        },
+        "advisors_ForceLastGoodPlan_name_1": {
+            "defaultValue": "ForceLastGoodPlan",
+            "type": "String"
+        },
+        "advisors_DbParameterization_name_1": {
+            "defaultValue": "DbParameterization",
+            "type": "String"
+        },
+        "firewallRules_ClientIPAddress_2018_09_11_05:09:35_name": {
+            "defaultValue": "ClientIPAddress_2018-09-11_05:09:35",
+            "type": "String"
+        },
+        "transparentDataEncryption_current_name": {
+            "defaultValue": "current",
+            "type": "String"
+        },
+        "accesspolicies_ownerAccessPolicyName_name": {
+            "defaultValue": "ownerAccessPolicyName",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "defaultValue": "RootManageSharedAccessKey",
+            "type": "String"
+        },
+        "transparentDataEncryption_current_name_1": {
+            "defaultValue": "current",
+            "type": "String"
+        },
+        "consumergroups_$Default_name": {
+            "defaultValue": "$Default",
+            "type": "String"
+        },
+        "consumergroups_$Default_name_1": {
+            "defaultValue": "$Default",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name_1": {
+            "defaultValue": "RootManageSharedAccessKey",
+            "type": "String"
+        },
+        "outputs_SmsTotalSamplesPerDevicePowerBi_name": {
+            "defaultValue": "SmsTotalSamplesPerDevicePowerBi",
+            "type": "String"
+        },
+        "consumergroups_$Default_name_2": {
+            "defaultValue": "$Default",
+            "type": "String"
+        },
+        "accesspolicies_ownerAccessPolicyName_name_1": {
+            "defaultValue": "ownerAccessPolicyName",
+            "type": "String"
+        },
+        "authorizationRules_listener_name": {
+            "defaultValue": "listener",
+            "type": "String"
+        },
+        "authorizationRules_send_name": {
+            "defaultValue": "send",
+            "type": "String"
+        },
+        "consumergroups_$Default_name_3": {
+            "defaultValue": "$Default",
+            "type": "String"
+        },
+        "authorizationRules_eventssend_name": {
+            "defaultValue": "eventssend",
+            "type": "String"
+        },
+        "authorizationRules_SendPolicy_name": {
+            "defaultValue": "SendPolicy",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.AnalysisServices/servers/smsanalysis'.",
+            "type": "Microsoft.AnalysisServices/servers",
+            "sku": {
+                "name": "B1",
+                "tier": "Basic",
+                "capacity": 1
+            },
+            "name": "[parameters('servers_smsanalysis_name')]",
+            "apiVersion": "2017-08-01",
+            "location": "West US 2",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "managedMode": 1,
+                "querypoolConnectionMode": "All",
+                "serverMonitorMode": 1
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.ContainerInstance/containerGroups/flattenadnpostsms'.",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "name": "[parameters('containerGroups_flattenadnpostsms_name')]",
+            "apiVersion": "2018-04-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[parameters('containerGroups_flattenadnpostsms_name')]",
+                        "properties": {
+                            "image": "smstestdockerregistry.azurecr.io/smsprocess/flattenandpost:1.1",
+                            "ports": [],
+                            "environmentVariables": [],
+                            "resources": {
+                                "requests": {
+                                    "memoryInGB": 4,
+                                    "cpu": 2
+                                }
+                            }
+                        }
+                    }
+                ],
+                "imageRegistryCredentials": [
+                    {
+                        "server": "smstestdockerregistry.azurecr.io",
+                        "username": "smstestdockerregistry"
+                    }
+                ],
+                "osType": "Linux"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.ContainerRegistry/registries/smstestdockerregistry'.",
+            "type": "Microsoft.ContainerRegistry/registries",
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard"
+            },
+            "name": "[parameters('registries_smstestdockerregistry_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "westus2",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "adminUserEnabled": true
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.DocumentDB/databaseAccounts/smstestsmsdocs'.",
+            "type": "Microsoft.DocumentDB/databaseAccounts",
+            "kind": "GlobalDocumentDB",
+            "name": "[parameters('databaseAccounts_smstestsmsdocs_name_1')]",
+            "apiVersion": "2015-04-08",
+            "location": "West US 2",
+            "tags": {
+                "defaultExperience": "DocumentDB"
+            },
+            "scale": null,
+            "properties": {
+                "databaseAccountOfferType": "Standard",
+                "consistencyPolicy": {
+                    "defaultConsistencyLevel": "Session",
+                    "maxIntervalInSeconds": 5,
+                    "maxStalenessPrefix": 100
+                },
+                "name": "[parameters('databaseAccounts_smstestsmsdocs_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns'.",
+            "type": "Microsoft.EventHub/namespaces",
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard",
+                "capacity": 1
+            },
+            "name": "[parameters('namespaces_smsevents_ns_name')]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "isAutoInflateEnabled": false,
+                "maximumThroughputUnits": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smssampleevents'.",
+            "type": "Microsoft.EventHub/namespaces",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic",
+                "capacity": 1
+            },
+            "name": "[parameters('namespaces_smssampleevents_name')]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "isAutoInflateEnabled": false,
+                "maximumThroughputUnits": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/microsoft.insights/components/smssampleparse'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_smssampleparse_name')]",
+            "apiVersion": "2015-05-01",
+            "location": "westus2",
+            "tags": {
+                "hidden-link:/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/sites/smssampleparse": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "Application_Type": "web",
+                "Flow_Type": null,
+                "Request_Source": "IbizaWebAppExtensionCreate",
+                "HockeyAppId": null,
+                "SamplingPsmstestentage": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/microsoft.insights/components/smsprocess'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_smsprocess_name')]",
+            "apiVersion": "2015-05-01",
+            "location": "westus2",
+            "tags": {
+                "hidden-link:/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/sites/smsprocess": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "Application_Type": "web",
+                "Flow_Type": null,
+                "Request_Source": "IbizaWebAppExtensionCreate",
+                "HockeyAppId": null,
+                "SamplingPsmstestentage": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/integrationAccounts/SMSTestBed'.",
+            "type": "Microsoft.Logic/integrationAccounts",
+            "sku": {
+                "name": "Standard"
+            },
+            "name": "[parameters('integrationAccounts_SMSTestBed_name')]",
+            "apiVersion": "2016-06-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "state": "Enabled"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/workflows/ReadSMS'.",
+            "type": "Microsoft.Logic/workflows",
+            "name": "[parameters('workflows_ReadSMS_name')]",
+            "apiVersion": "2017-07-01",
+            "location": "westus2",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "state": "Enabled",
+                "integrationAccount": {
+                    "id": "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]"
+                },
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "Recurrence": {
+                            "recurrence": {
+                                "frequency": "Hour",
+                                "interval": 1
+                            },
+                            "type": "Recurrence"
+                        }
+                    },
+                    "actions": {
+                        "Condition": {
+                            "actions": {
+                                "Set_CurrentResult": {
+                                    "runAfter": {
+                                        "Set_variable_2": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "CurrentResult",
+                                        "value": "@json(replace(string(json(xml(trim(body('Current'))))), '\"@', '\"'))"
+                                    }
+                                },
+                                "Set_CurrentResultXML": {
+                                    "runAfter": {},
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "CurrentResultXML",
+                                        "value": "@{body('Current')}"
+                                    }
+                                },
+                                "Set_FirstSequence": {
+                                    "runAfter": {
+                                        "Set_NextSequence": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "FirstSequence",
+                                        "value": "@int(variables('CurrentResult').MTConnectStreams.Header.firstSequence)"
+                                    }
+                                },
+                                "Set_LastSequence": {
+                                    "runAfter": {
+                                        "Set_FirstSequence": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "FirstSequence",
+                                        "value": "@int(variables('CurrentResult').MTConnectStreams.Header.lastSequence)"
+                                    }
+                                },
+                                "Set_NextSequence": {
+                                    "runAfter": {
+                                        "Set_CurrentResult": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "NextSequence",
+                                        "value": "@int(variables('CurrentResult').MTConnectStreams.Header.nextSequence)"
+                                    }
+                                },
+                                "Set_RequestStatus": {
+                                    "runAfter": {
+                                        "Set_CurrentResultXML": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "RequestStatus",
+                                        "value": "@outputs('Current')['statusCode']"
+                                    }
+                                },
+                                "Set_variable": {
+                                    "runAfter": {
+                                        "Set_RequestStatus": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "debugVal",
+                                        "value": "@{string(json(xml(trim(body('Current')))))}"
+                                    }
+                                },
+                                "Set_variable_2": {
+                                    "runAfter": {
+                                        "Set_variable": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "debugVal2",
+                                        "value": "@{body('Current')}"
+                                    }
+                                },
+                                "Until": {
+                                    "actions": {
+                                        "Create_XML_Blob": {
+                                            "runAfter": {
+                                                "Create_sequence_blob": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "body": "@variables('CurrentResultXML')",
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "post",
+                                                "path": "/datasets/default/files",
+                                                "queries": {
+                                                    "folderPath": "/streams",
+                                                    "name": "@{concat(variables('CurrentResult').MTConnectStreams.Header.creationTime, '.xml')}",
+                                                    "queryParametersSingleEncoded": true
+                                                }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "contentTransfer": {
+                                                    "transferMode": "Chunked"
+                                                }
+                                            }
+                                        },
+                                        "Create_sequence_blob": {
+                                            "runAfter": {
+                                                "Create_stream_blob": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "body": "@variables('CurrentResultXML')",
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "post",
+                                                "path": "/datasets/default/files",
+                                                "queries": {
+                                                    "folderPath": "/samplesforanalysis",
+                                                    "name": "@{variables('NextSequence')}",
+                                                    "queryParametersSingleEncoded": true
+                                                }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "contentTransfer": {
+                                                    "transferMode": "Chunked"
+                                                }
+                                            }
+                                        },
+                                        "Create_stream_blob": {
+                                            "runAfter": {},
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "body": "@variables('CurrentResult').MTConnectStreams",
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "post",
+                                                "path": "/datasets/default/files",
+                                                "queries": {
+                                                    "folderPath": "/streamsjson",
+                                                    "name": "@{replace(replace(variables('CurrentResult').MTConnectStreams.Header.creationTime, '-', ''), ':', '')}",
+                                                    "queryParametersSingleEncoded": true
+                                                }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "contentTransfer": {
+                                                    "transferMode": "Chunked"
+                                                }
+                                            }
+                                        },
+                                        "Delay": {
+                                            "runAfter": {
+                                                "Put_a_message_on_a_queue": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "Wait",
+                                            "inputs": {
+                                                "interval": {
+                                                    "count": 2,
+                                                    "unit": "Minute"
+                                                }
+                                            }
+                                        },
+                                        "Put_a_message_on_a_queue": {
+                                            "runAfter": {
+                                                "Create_XML_Blob": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "body": "@{concat(variables('CurrentResult').MTConnectStreams.Header.creationTime, '.xml')}",
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['azurequeues']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "post",
+                                                "path": "/@{encodeURIComponent('smssamples')}/messages"
+                                            }
+                                        },
+                                        "Sample": {
+                                            "runAfter": {
+                                                "Delay": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "Http",
+                                            "inputs": {
+                                                "method": "GET",
+                                                "uri": "https://smstestbed.nist.gov/vds/sample?from=@{variables('NextSequence')}"
+                                            }
+                                        },
+                                        "Set_CurrentResultXML_from_Sample": {
+                                            "runAfter": {
+                                                "Sample": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "CurrentResultXML",
+                                                "value": "@{body('Sample')}"
+                                            }
+                                        },
+                                        "Set_FirstSequence_from_Sample": {
+                                            "runAfter": {
+                                                "Set_NextSequence_from_Sample": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "FirstSequence",
+                                                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.firstSequence)"
+                                            }
+                                        },
+                                        "Set_LastSequence_from_Sample": {
+                                            "runAfter": {
+                                                "Set_FirstSequence_from_Sample": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "LastSequence",
+                                                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.lastSequence)"
+                                            }
+                                        },
+                                        "Set_NextSequence_from_Sample": {
+                                            "runAfter": {
+                                                "Set_sample_result": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "NextSequence",
+                                                "value": "@int(variables('CurrentResult').MTConnectStreams.Header.nextSequence)"
+                                            }
+                                        },
+                                        "Set_Sample_status": {
+                                            "runAfter": {
+                                                "Set_CurrentResultXML_from_Sample": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "RequestStatus",
+                                                "value": "@outputs('Sample')['statusCode']"
+                                            }
+                                        },
+                                        "Set_sample_result": {
+                                            "runAfter": {
+                                                "Set_Sample_status": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "CurrentResult",
+                                                "value": "@json(replace(string(json(xml(trim(body('Sample'))))), '\"@', '\"'))"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Set_LastSequence": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "expression": "@not(equals(variables('RequestStatus'), 200))",
+                                    "limit": {
+                                        "count": 60,
+                                        "timeout": "PT1H"
+                                    },
+                                    "type": "Until"
+                                }
+                            },
+                            "runAfter": {
+                                "Initialize_variable_2": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "equals": [
+                                            "@outputs('Current')['statusCode']",
+                                            200
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Create_blob": {
+                            "runAfter": {
+                                "Initialize_ProbeResult": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": "@variables('ProbeResult')",
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/datasets/default/files",
+                                "queries": {
+                                    "folderPath": "/samples",
+                                    "name": "probe",
+                                    "queryParametersSingleEncoded": true
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "contentTransfer": {
+                                    "transferMode": "Chunked"
+                                }
+                            }
+                        },
+                        "Current": {
+                            "runAfter": {
+                                "Record_probe_request_for_devices": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Http",
+                            "inputs": {
+                                "method": "GET",
+                                "uri": "https://smstestbed.nist.gov/vds/current"
+                            }
+                        },
+                        "Initialize_CurrentResult": {
+                            "runAfter": {
+                                "Initialize_CurrentResultXML": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "CurrentResult",
+                                        "type": "Object",
+                                        "value": {}
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_CurrentResultXML": {
+                            "runAfter": {
+                                "Current": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "CurrentResultXML",
+                                        "type": "String",
+                                        "value": "\"\""
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_FirstSequence": {
+                            "runAfter": {
+                                "Initialize_RequestStatus": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "FirstSequence",
+                                        "type": "Integer",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_LastSequence": {
+                            "runAfter": {
+                                "Initialize_FirstSequence": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "LastSequence",
+                                        "type": "Integer",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_NextSequence": {
+                            "runAfter": {
+                                "Initialize_CurrentResult": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "NextSequence",
+                                        "type": "Integer",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_ProbeResult": {
+                            "runAfter": {
+                                "Probe": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "ProbeResult",
+                                        "type": "Object",
+                                        "value": "@json(replace(string(json(xml(trim(body('Probe'))))), '\"@', '\"'))"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_RequestStatus": {
+                            "runAfter": {
+                                "Initialize_NextSequence": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "RequestStatus",
+                                        "type": "Integer",
+                                        "value": 500
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable": {
+                            "runAfter": {
+                                "Initialize_LastSequence": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "debugVal",
+                                        "type": "String",
+                                        "value": "\"\""
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_2": {
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "debugVal2",
+                                        "type": "String"
+                                    }
+                                ]
+                            }
+                        },
+                        "Probe": {
+                            "runAfter": {},
+                            "type": "Http",
+                            "inputs": {
+                                "headers": {
+                                    "Content-Type": "application/xml"
+                                },
+                                "method": "GET",
+                                "uri": "https://smstestbed.nist.gov/vds/probe"
+                            }
+                        },
+                        "Record_probe_request_for_devices": {
+                            "runAfter": {
+                                "Create_blob": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "devices": "@variables('ProbeResult').MTConnectDevices.Devices",
+                                    "id": "@variables('ProbeResult').MTConnectDevices.Header.creationTime"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['documentdb']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/dbs/@{encodeURIComponent('smsdata')}/colls/@{encodeURIComponent('devices')}/docs"
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azureblob": {
+                                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_azureblob_name'))]",
+                                "connectionName": "azureblob",
+                                "id": "/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/azureblob"
+                            },
+                            "azurequeues": {
+                                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_azurequeues_name'))]",
+                                "connectionName": "azurequeues",
+                                "id": "/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/azurequeues"
+                            },
+                            "documentdb": {
+                                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_documentdb_name'))]",
+                                "connectionName": "documentdb",
+                                "id": "/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/documentdb"
+                            }
+                        }
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]",
+                "[resourceId('Microsoft.Web/connections', parameters('connections_azureblob_name'))]",
+                "[resourceId('Microsoft.Web/connections', parameters('connections_azurequeues_name'))]",
+                "[resourceId('Microsoft.Web/connections', parameters('connections_documentdb_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata'.",
+            "type": "Microsoft.Sql/servers",
+            "kind": "v12.0",
+            "name": "[parameters('servers_smstestsmsdata_name')]",
+            "apiVersion": "2015-05-01-preview",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "administratorLogin": "smstestenk",
+                "version": "12.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Storage/storageAccounts/smstestdiagstore'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_smstestdiagstore_name')]",
+            "apiVersion": "2018-03-01-preview",
+            "location": "westus2",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Storage/storageAccounts/smstestsmsstore'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_smstestsmsstore_name')]",
+            "apiVersion": "2018-03-01-preview",
+            "location": "westus2",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs",
+            "name": "[parameters('streamingjobs_processsms_name')]",
+            "apiVersion": "2016-03-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "sku": {
+                    "name": "Standard"
+                },
+                "outputStartMode": "JobStartTime",
+                "outputStartTime": "2018-08-13T22:44:46.693Z",
+                "eventsOutOfOrderPolicy": "Adjust",
+                "outputErrorPolicy": "Stop",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "dataLocale": "en-US",
+                "compatibilityLevel": "1.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/testjob'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs",
+            "name": "[parameters('streamingjobs_testjob_name')]",
+            "apiVersion": "2016-03-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "sku": {
+                    "name": "Standard"
+                },
+                "eventsOutOfOrderPolicy": "Adjust",
+                "outputErrorPolicy": "Stop",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "dataLocale": "en-US",
+                "compatibilityLevel": "1.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.TimeSeriesInsights/environments/smstesttsisandbox'.",
+            "type": "Microsoft.TimeSeriesInsights/environments",
+            "sku": {
+                "name": "S1",
+                "capacity": 1
+            },
+            "kind": "Standard",
+            "name": "[parameters('environments_smstesttsisandbox_name')]",
+            "apiVersion": "2017-11-15",
+            "location": "westus",
+            "scale": null,
+            "properties": {
+                "dataRetentionTime": "P31D",
+                "storageLimitExceededBehavior": "PurgeOldData"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.TimeSeriesInsights/environments/smstsi'.",
+            "type": "Microsoft.TimeSeriesInsights/environments",
+            "sku": {
+                "name": "S1",
+                "capacity": 1
+            },
+            "kind": "Standard",
+            "name": "[parameters('environments_smstsi_name')]",
+            "apiVersion": "2017-11-15",
+            "location": "westus",
+            "scale": null,
+            "properties": {
+                "dataRetentionTime": "P31D",
+                "storageLimitExceededBehavior": "PurgeOldData"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/connections/azureblob'.",
+            "type": "Microsoft.Web/connections",
+            "name": "[parameters('connections_azureblob_name')]",
+            "apiVersion": "2016-06-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "displayName": "smstestSmsStorage",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/', parameters('connections_azureblob_name'))]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/connections/azurequeues'.",
+            "type": "Microsoft.Web/connections",
+            "name": "[parameters('connections_azurequeues_name')]",
+            "apiVersion": "2016-06-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "displayName": "SmsSamplesQueue",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/', parameters('connections_azurequeues_name'))]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/connections/documentdb'.",
+            "type": "Microsoft.Web/connections",
+            "name": "[parameters('connections_documentdb_name')]",
+            "apiVersion": "2016-06-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "displayName": "smstestsmsdocs",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/', parameters('connections_documentdb_name'))]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/connections/office365'.",
+            "type": "Microsoft.Web/connections",
+            "name": "[parameters('connections_office365_name')]",
+            "apiVersion": "2016-06-01",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "displayName": "smstestenk@microsoft.com",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/providers/Microsoft.Web/locations/westus2/managedApis/', parameters('connections_office365_name'))]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Web/serverfarms/CentralUSPlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_CentralUSPlan_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "Central US",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_CentralUSPlan_name')]",
+                "workerTierName": null,
+                "adminSiteName": null,
+                "hostingEnvironmentProfile": null,
+                "perSiteScaling": false,
+                "reserved": false,
+                "targetWorksmstestount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/AuthorizationRules/RootManageSharedAccessKey'.",
+            "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('AuthorizationRules_RootManageSharedAccessKey_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/samplestsihub'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_samplestsihub_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "messageRetentionInDays": 2,
+                "partitionCount": 4,
+                "status": "Active"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatconditions'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatconditions_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "messageRetentionInDays": 1,
+                "partitionCount": 2,
+                "status": "Active"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatevents'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatevents_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "messageRetentionInDays": 1,
+                "partitionCount": 2,
+                "status": "Active"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatsamples'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatsamples_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "messageRetentionInDays": 1,
+                "partitionCount": 2,
+                "status": "Active"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/samplestsihub/authorizationRules/listener'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_samplestsihub_name'), '/', parameters('authorizationRules_listener_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Listen"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_samplestsihub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/samplestsihub/consumergroups/$Default'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_samplestsihub_name'), '/', parameters('consumergroups_$Default_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_samplestsihub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatconditions/authorizationRules/send'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatconditions_name'), '/', parameters('authorizationRules_send_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatconditions_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatconditions/consumergroups/$Default'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatconditions_name'), '/', parameters('consumergroups_$Default_name_3'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatconditions_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatevents/authorizationRules/eventssend'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatevents_name'), '/', parameters('authorizationRules_eventssend_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatevents_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatevents/consumergroups/$Default'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatevents_name'), '/', parameters('consumergroups_$Default_name_1'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatevents_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatsamples/authorizationRules/SendPolicy'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatsamples_name'), '/', parameters('authorizationRules_SendPolicy_name'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatsamples_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smsevents-ns/eventhubs/smsflatsamples/consumergroups/$Default'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[concat(parameters('namespaces_smsevents_ns_name'), '/', parameters('eventhubs_smsflatsamples_name'), '/', parameters('consumergroups_$Default_name_2'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smsevents_ns_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_smsflatsamples_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.EventHub/namespaces/smssampleevents/AuthorizationRules/RootManageSharedAccessKey'.",
+            "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+            "name": "[concat(parameters('namespaces_smssampleevents_name'), '/', parameters('AuthorizationRules_RootManageSharedAccessKey_name_1'))]",
+            "apiVersion": "2017-04-01",
+            "location": "West US",
+            "scale": null,
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_smssampleevents_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/integrationAccounts/SMSTestBed/schemas/MTConnectAssets_1.3_1.0'.",
+            "type": "Microsoft.Logic/integrationAccounts/schemas",
+            "name": "[concat(parameters('integrationAccounts_SMSTestBed_name'), '/', parameters('schemas_MTConnectAssets_1.3_1.0_name'))]",
+            "apiVersion": "2016-06-01",
+            "scale": null,
+            "properties": {
+                "schemaType": "Xml",
+                "targetNamespace": "urn:mtconnect.org:MTConnectAssets:1.3",
+                "documentName": "MTConnectAssets",
+                "contentLink": {
+                    "uri": "[concat('https://prod-21.westus2.logic.azure.com:443/integrationAccounts/584daec6ab5f425e96a45b3d6a021b12/schemas/', parameters('schemas_MTConnectAssets_1.3_1.0_name'),'/contents/Value?api-version=2015-08-01-preview&se=2018-09-24T23%3A09%3A39.9145500Z&sp=%2Fschemas%2F', parameters('schemas_MTConnectAssets_1.3_1.0_name'),'%2Fread&sv=1.0&sig=CuhwHivvsMPMex30wlsz0B0c_IXZsFSc3Is7vSekQ-Y')]",
+                    "contentVersion": "\"0x8D5BAC82DB762A0\"",
+                    "contentSize": 76050,
+                    "contentHash": {
+                        "algorithm": "md5",
+                        "value": "CoZrX7XFMojvT787WLhN8Q=="
+                    }
+                },
+                "metadata": {
+                    "fileName": null
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/integrationAccounts/SMSTestBed/schemas/MTConnectDevices_1.3_1.0'.",
+            "type": "Microsoft.Logic/integrationAccounts/schemas",
+            "name": "[concat(parameters('integrationAccounts_SMSTestBed_name'), '/', parameters('schemas_MTConnectDevices_1.3_1.0_name'))]",
+            "apiVersion": "2016-06-01",
+            "scale": null,
+            "properties": {
+                "schemaType": "Xml",
+                "targetNamespace": "urn:mtconnect.org:MTConnectDevices:1.3",
+                "documentName": "MTConnectDevices",
+                "contentLink": {
+                    "uri": "[concat('https://prod-21.westus2.logic.azure.com:443/integrationAccounts/584daec6ab5f425e96a45b3d6a021b12/schemas/', parameters('schemas_MTConnectDevices_1.3_1.0_name'),'/contents/Value?api-version=2015-08-01-preview&se=2018-09-24T23%3A09%3A39.9145500Z&sp=%2Fschemas%2F', parameters('schemas_MTConnectDevices_1.3_1.0_name'),'%2Fread&sv=1.0&sig=UFYMDnGmHC7vcG3ASJpGC8yXp-NpCVims0raTK8jXkE')]",
+                    "contentVersion": "\"0x8D5BAC833A419D2\"",
+                    "contentSize": 59550,
+                    "contentHash": {
+                        "algorithm": "md5",
+                        "value": "ftjy8SGjVPE6Oo0gukmkDw=="
+                    }
+                },
+                "metadata": {
+                    "fileName": null
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/integrationAccounts/SMSTestBed/schemas/MTConnectError_1.3_1.0'.",
+            "type": "Microsoft.Logic/integrationAccounts/schemas",
+            "name": "[concat(parameters('integrationAccounts_SMSTestBed_name'), '/', parameters('schemas_MTConnectError_1.3_1.0_name'))]",
+            "apiVersion": "2016-06-01",
+            "scale": null,
+            "properties": {
+                "schemaType": "Xml",
+                "targetNamespace": "urn:mtconnect.org:MTConnectError:1.3",
+                "documentName": "MTConnectError",
+                "contentLink": {
+                    "uri": "[concat('https://prod-21.westus2.logic.azure.com:443/integrationAccounts/584daec6ab5f425e96a45b3d6a021b12/schemas/', parameters('schemas_MTConnectError_1.3_1.0_name'),'/contents/Value?api-version=2015-08-01-preview&se=2018-09-24T23%3A09%3A39.9145500Z&sp=%2Fschemas%2F', parameters('schemas_MTConnectError_1.3_1.0_name'),'%2Fread&sv=1.0&sig=iT2b_NrEohXiOX0xy05LFa9RFQLDw5oALmXM9the3GI')]",
+                    "contentVersion": "\"0x8D5BAC838DD6686\"",
+                    "contentSize": 25838,
+                    "contentHash": {
+                        "algorithm": "md5",
+                        "value": "EdD77Haba/en8lbEJCPLkg=="
+                    }
+                },
+                "metadata": {
+                    "fileName": null
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Logic/integrationAccounts/SMSTestBed/schemas/MTConnectStreams_1.3_1.0'.",
+            "type": "Microsoft.Logic/integrationAccounts/schemas",
+            "name": "[concat(parameters('integrationAccounts_SMSTestBed_name'), '/', parameters('schemas_MTConnectStreams_1.3_1.0_name'))]",
+            "apiVersion": "2016-06-01",
+            "scale": null,
+            "properties": {
+                "schemaType": "Xml",
+                "targetNamespace": "urn:mtconnect.org:MTConnectStreams:1.3",
+                "documentName": "MTConnectStreams",
+                "contentLink": {
+                    "uri": "[concat('https://prod-21.westus2.logic.azure.com:443/integrationAccounts/584daec6ab5f425e96a45b3d6a021b12/schemas/', parameters('schemas_MTConnectStreams_1.3_1.0_name'),'/contents/Value?api-version=2015-08-01-preview&se=2018-09-24T23%3A09%3A39.9145500Z&sp=%2Fschemas%2F', parameters('schemas_MTConnectStreams_1.3_1.0_name'),'%2Fread&sv=1.0&sig=KTrPImkZn1ZH4c5-m4rCStvIb1MfAGm9-yQ8qsptYps')]",
+                    "contentVersion": "\"0x8D5BBB5655B39C2\"",
+                    "contentSize": 147423,
+                    "contentHash": {
+                        "algorithm": "md5",
+                        "value": "ILOFHZfjZsSGZCJpvrIs+w=="
+                    }
+                },
+                "metadata": {
+                    "fileName": null
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integrationAccounts_SMSTestBed_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/advisors/CreateIndex'.",
+            "type": "Microsoft.Sql/servers/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('advisors_CreateIndex_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/advisors/DropIndex'.",
+            "type": "Microsoft.Sql/servers/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('advisors_DropIndex_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/advisors/DbParameterization'.",
+            "type": "Microsoft.Sql/servers/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('advisors_DbParameterization_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/advisors/DefragmentIndex'.",
+            "type": "Microsoft.Sql/servers/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('advisors_DefragmentIndex_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/advisors/ForceLastGoodPlan'.",
+            "type": "Microsoft.Sql/servers/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('advisors_ForceLastGoodPlan_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/auditingPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/auditingPolicies",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('auditingPolicies_Default_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "auditingState": "New",
+                "eventTypesToAudit": "PlainSQL_Success,PlainSQL_Failure,ParameterizedSQL_Success,ParameterizedSQL_Failure,StoredProcedure_Success,StoredProcedure_Failure,Login_Success,Login_Failure,TransactionManagement_Success,TransactionManagement_Failure",
+                "storageAccountName": null,
+                "storageAccountKey": null,
+                "storageAccountSecondaryKey": null,
+                "storageTableEndpoint": null,
+                "storageAccountResourceGroupName": null,
+                "storageAccountSubscriptionId": null,
+                "fullAuditLogsTableName": "SQLDBAuditLogssmstestsmsdata",
+                "auditLogsTableName": "smstestsmsdata",
+                "retentionDays": "0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "sku": {
+                "name": "S0",
+                "tier": "Standard"
+            },
+            "kind": "v12.0,user",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'))]",
+            "apiVersion": "2017-03-01-preview",
+            "location": "westus2",
+            "scale": null,
+            "properties": {
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": 268435456000,
+                "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+                "zoneRedundant": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/firewallRules/AllowAllWindowsAzureIps'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('firewallRules_AllowAllWindowsAzureIps_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/firewallRules/ClientIPAddress_2018-09-11_05:09:35'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('firewallRules_ClientIPAddress_2018_09_11_05:09:35_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "131.107.159.0",
+                "endIpAddress": "131.107.159.255"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/firewallRules/ClientIPAddress_2018-9-11_9-58-25'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('firewallRules_ClientIPAddress_2018_9_11_9_58_25_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "131.107.160.0",
+                "endIpAddress": "131.107.160.255"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/firewallRules/Kate's IP (Home)'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('firewallRules_Kate's_IP_(Home)_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "24.119.207.37",
+                "endIpAddress": "24.119.207.37"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/encryptionProtector/current'.",
+            "type": "Microsoft.Sql/servers/encryptionProtector",
+            "kind": "servicemanaged",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('encryptionProtector_current_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "serverKeyName": "ServiceManaged",
+                "serverKeyType": "ServiceManaged"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/keys/ServiceManaged'.",
+            "type": "Microsoft.Sql/servers/keys",
+            "kind": "servicemanaged",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('keys_ServiceManaged_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "serverKeyType": "[parameters('keys_ServiceManaged_name')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/advisors/CreateIndex'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('advisors_CreateIndex_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/advisors/DropIndex'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('advisors_DropIndex_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/advisors/DbParameterization'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('advisors_DbParameterization_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/advisors/DefragmentIndex'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('advisors_DefragmentIndex_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/advisors/ForceLastGoodPlan'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('advisors_ForceLastGoodPlan_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/auditingPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/auditingPolicies",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('auditingPolicies_Default_name_2'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "auditingState": "New",
+                "eventTypesToAudit": "PlainSQL_Success,PlainSQL_Failure,ParameterizedSQL_Success,ParameterizedSQL_Failure,StoredProcedure_Success,StoredProcedure_Failure,Login_Success,Login_Failure,TransactionManagement_Success,TransactionManagement_Failure",
+                "storageAccountName": null,
+                "storageAccountKey": null,
+                "storageAccountSecondaryKey": null,
+                "storageTableEndpoint": null,
+                "storageAccountResourceGroupName": null,
+                "storageAccountSubscriptionId": null,
+                "useServerDefault": "Enabled",
+                "fullAuditLogsTableName": "SQLDBAuditLogssmstestsmsdatasmstestsmsdata",
+                "auditLogsTableName": "smstestsmsdatasmstestsmsdata",
+                "retentionDays": "0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/geoBackupPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('geoBackupPolicies_Default_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "state": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/smstestsmsdata/transparentDataEncryption/current'.",
+            "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_smstestsmsdata_name'), '/', parameters('transparentDataEncryption_current_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "status": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_smstestsmsdata_name'), parameters('databases_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/master/auditingPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/auditingPolicies",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_master_name'), '/', parameters('auditingPolicies_Default_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "auditingState": "New",
+                "eventTypesToAudit": "PlainSQL_Success,PlainSQL_Failure,ParameterizedSQL_Success,ParameterizedSQL_Failure,StoredProcedure_Success,StoredProcedure_Failure,Login_Success,Login_Failure,TransactionManagement_Success,TransactionManagement_Failure",
+                "storageAccountName": null,
+                "storageAccountKey": null,
+                "storageAccountSecondaryKey": null,
+                "storageTableEndpoint": null,
+                "storageAccountResourceGroupName": null,
+                "storageAccountSubscriptionId": null,
+                "useServerDefault": "Enabled",
+                "fullAuditLogsTableName": "SQLDBAuditLogssmstestsmsdataMaster",
+                "auditLogsTableName": "smstestsmsdataMaster",
+                "retentionDays": "0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/master/geoBackupPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_master_name'), '/', parameters('geoBackupPolicies_Default_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "state": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.Sql/servers/smstestsmsdata/databases/master/transparentDataEncryption/current'.",
+            "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+            "name": "[concat(parameters('servers_smstestsmsdata_name'), '/', parameters('databases_master_name'), '/', parameters('transparentDataEncryption_current_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West US 2",
+            "scale": null,
+            "properties": {
+                "status": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_smstestsmsdata_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/inputs/EventHubConditions'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('inputs_EventHubConditions_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "type": "Stream",
+                "datasource": {
+                    "type": "Microsoft.ServiceBus/EventHub",
+                    "properties": {
+                        "eventHubName": "smsflatconditions",
+                        "serviceBusNamespace": "smsevents-ns",
+                        "sharedAccessPolicyName": "RootManageSharedAccessKey"
+                    }
+                },
+                "compression": {
+                    "type": "None"
+                },
+                "serialization": {
+                    "type": "Json",
+                    "properties": {
+                        "encoding": "UTF8"
+                    }
+                },
+                "etag": "8d334079-b40d-46d2-8894-e061bd9db49e"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/inputs/EventHubEventsIn'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('inputs_EventHubEventsIn_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "type": "Stream",
+                "datasource": {
+                    "type": "Microsoft.ServiceBus/EventHub",
+                    "properties": {
+                        "eventHubName": "smsflatevents",
+                        "serviceBusNamespace": "smsevents-ns",
+                        "sharedAccessPolicyName": "RootManageSharedAccessKey"
+                    }
+                },
+                "compression": {
+                    "type": "None"
+                },
+                "serialization": {
+                    "type": "Json",
+                    "properties": {
+                        "encoding": "UTF8"
+                    }
+                },
+                "etag": "1d305d9d-9f25-478f-9488-a3b680648573"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/inputs/EventHubIn'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('inputs_EventHubIn_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "type": "Stream",
+                "datasource": {
+                    "type": "Microsoft.ServiceBus/EventHub",
+                    "properties": {
+                        "eventHubName": "smsflatsamples",
+                        "serviceBusNamespace": "smsevents-ns",
+                        "sharedAccessPolicyName": "RootManageSharedAccessKey"
+                    }
+                },
+                "compression": {
+                    "type": "None"
+                },
+                "serialization": {
+                    "type": "Json",
+                    "properties": {
+                        "encoding": "UTF8"
+                    }
+                },
+                "etag": "a75579ea-e8f5-4db5-9ccf-bd81e8cc0d80"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/conditionsTable'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_conditionsTable_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/Table",
+                    "properties": {
+                        "accountName": "smstestsmsstore",
+                        "table": "conditions",
+                        "partitionKey": "HourWindow",
+                        "rowKey": "ConditionSequence",
+                        "columnsToRemove": null,
+                        "batchSize": 100
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/cosmosEvents'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_cosmosEvents_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/DocumentDB",
+                    "properties": {
+                        "accountId": "smstestsmsdocs",
+                        "accountKey": null,
+                        "database": "smsdata",
+                        "collectionNamePattern": "events",
+                        "documentId": "eventsequence"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/cosmosSamples'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_cosmosSamples_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/DocumentDB",
+                    "properties": {
+                        "accountId": "smstestsmsdocs",
+                        "accountKey": null,
+                        "database": "smsdata",
+                        "collectionNamePattern": "samples",
+                        "documentId": "samplesequence"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/eventsBlob'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_eventsBlob_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/Blob",
+                    "properties": {
+                        "blobPathPrefix": "events-{date}-{time}",
+                        "storageAccounts": [
+                            {
+                                "accountName": "smstestsmsstore"
+                            }
+                        ],
+                        "container": "csvs",
+                        "pathPattern": "events-{date}-{time}",
+                        "dateFormat": "MM-dd-yyyy",
+                        "timeFormat": "HH"
+                    }
+                },
+                "serialization": {
+                    "type": "Csv",
+                    "properties": {
+                        "fieldDelimiter": ",",
+                        "encoding": "UTF8"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/eventsTable'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_eventsTable_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/Table",
+                    "properties": {
+                        "accountName": "smstestsmsstore",
+                        "table": "events",
+                        "partitionKey": "HourWindow",
+                        "rowKey": "EventSequence",
+                        "columnsToRemove": null,
+                        "batchSize": 100
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/samplesBlob'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_samplesBlob_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/Blob",
+                    "properties": {
+                        "blobPathPrefix": "sample-{date}-{time}",
+                        "storageAccounts": [
+                            {
+                                "accountName": "smstestsmsstore"
+                            }
+                        ],
+                        "container": "csvs",
+                        "pathPattern": "sample-{date}-{time}",
+                        "dateFormat": "MM-dd-yyyy",
+                        "timeFormat": "HH"
+                    }
+                },
+                "serialization": {
+                    "type": "Csv",
+                    "properties": {
+                        "fieldDelimiter": ",",
+                        "encoding": "UTF8"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/samplesTable'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_samplesTable_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.Storage/Table",
+                    "properties": {
+                        "accountName": "smstestsmsstore",
+                        "table": "samples",
+                        "partitionKey": "HourWindow",
+                        "rowKey": "SampleSequence",
+                        "columnsToRemove": null,
+                        "batchSize": 100
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/samplestsihub'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_samplestsihub_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "Microsoft.ServiceBus/EventHub",
+                    "properties": {
+                        "eventHubName": "[parameters('outputs_samplestsihub_name')]",
+                        "serviceBusNamespace": "smsevents-ns",
+                        "sharedAccessPolicyName": "RootManageSharedAccessKey"
+                    }
+                },
+                "serialization": {
+                    "type": "Json",
+                    "properties": {
+                        "encoding": "UTF8",
+                        "format": "LineSeparated"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourceGroups/smstestSandbox/providers/Microsoft.StreamAnalytics/streamingjobs/processsms/outputs/SmsTotalSamplesPerDevicePowerBi'.",
+            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+            "name": "[concat(parameters('streamingjobs_processsms_name'), '/', parameters('outputs_SmsTotalSamplesPerDevicePowerBi_name'))]",
+            "apiVersion": "2016-03-01",
+            "scale": null,
+            "properties": {
+                "datasource": {
+                    "type": "PowerBI",
+                    "properties": {
+                        "dataset": "SMSData",
+                        "table": "NumberOfSamples",
+                        "groupId": "",
+                        "groupName": "My workspace",
+                        "refreshToken": null,
+                        "accessToken": null,
+                        "tokenUserPrincipalName": "smstestenk@microsoft.com",
+                        "tokenUserDisplayName": "smstestenk Keresteci"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_processsms_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.TimeSeriesInsights/environments/smstesttsisandbox/accesspolicies/ownerAccessPolicyName'.",
+            "type": "Microsoft.TimeSeriesInsights/environments/accesspolicies",
+            "name": "[concat(parameters('environments_smstesttsisandbox_name'), '/', parameters('accesspolicies_ownerAccessPolicyName_name_1'))]",
+            "apiVersion": "2017-11-15",
+            "scale": null,
+            "properties": {
+                "principalObjectId": "df30a7e0-98dc-41a6-afa6-d1ddea551529",
+                "roles": [
+                    "Reader",
+                    "Contributor"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.TimeSeriesInsights/environments', parameters('environments_smstesttsisandbox_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.TimeSeriesInsights/environments/smstsi/accesspolicies/ownerAccessPolicyName'.",
+            "type": "Microsoft.TimeSeriesInsights/environments/accesspolicies",
+            "name": "[concat(parameters('environments_smstsi_name'), '/', parameters('accesspolicies_ownerAccessPolicyName_name'))]",
+            "apiVersion": "2017-11-15",
+            "scale": null,
+            "properties": {
+                "principalObjectId": "df30a7e0-98dc-41a6-afa6-d1ddea551529",
+                "roles": [
+                    "Reader",
+                    "Contributor"
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.TimeSeriesInsights/environments', parameters('environments_smstsi_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf7adf12-c3a8-426c-9976-29f145eba70f/resourcegroups/smstestSandbox/providers/Microsoft.TimeSeriesInsights/environments/smstsi/eventsources/SMSSamples'.",
+            "type": "Microsoft.TimeSeriesInsights/environments/eventsources",
+            "kind": "Microsoft.EventHub",
+            "name": "[concat(parameters('environments_smstsi_name'), '/', parameters('eventsources_SMSSamples_name'))]",
+            "apiVersion": "2017-11-15",
+            "location": "westus",
+            "scale": null,
+            "properties": {
+                "serviceBusNamespace": "smsevents-ns",
+                "eventHubName": "samplestsihub",
+                "keyName": "RootManageSharedAccessKey",
+                "consumerGroupName": "$Default",
+                "eventSourceResourceId": "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_samplestsihub_name'))]",
+                "localTimestamp": null,
+                "creationTime": "Mon, 13 Aug 2018 20:38:51 GMT",
+                "provisioningState": "Succeeded",
+                "timestampPropertyName": "SampleTimestamp"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.TimeSeriesInsights/environments', parameters('environments_smstsi_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_smsevents_ns_name'), parameters('eventhubs_samplestsihub_name'))]"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+﻿{
+  "Sample": null,
+  "EventHubProperties": null,
+  "BlobStorageProperties": {
+    "Container": "csvs",
+    "DateFormat": "yyyy/MM/dd",
+    "PathPattern": "",
+    "SourcePartitionCount": 1,
+    "StorageAccounts": [
+      {
+        "AccountKey": null,
+        "AccountName": "ercsmsstore"
+      }
+    ],
+    "TimeFormat": "HH"
+  },
+  "IoTHubProperties": null,
+  "BlobReferenceProperties": null,
+  "DataSourceCredentialDomain": "e8d2f27d-c2a6-482d-a4c3-0a1cbd5ee98e.StreamAnalyticsCredential",
+  "Name": "SamplesTable",
+  "Type": "Data Stream",
+  "DataSourceType": "Blob Storage",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Csv",
+    "FieldDelimiter": ",",
+    "Format": null
+  },
+  "CompresssionType": "None",
+  "ScriptType": "Input"
+}

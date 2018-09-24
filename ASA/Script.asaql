@@ -1,0 +1,137 @@
+﻿/* 
+
+-- Following includes several examples we used in developing the related blogposts. 
+
+SELECT 
+    System.TimeStamp AS WindowEnd,   
+    DeviceName,
+    Count(SampleSequence) AS NumberOfSamples
+INTO 
+    [SmsTotalSamplesPerDevicePowerBi]
+FROM 
+    [EventHubIn] 
+GROUP BY DeviceName, HoppingWindow(minute, 10, 2)
+
+SELECT
+    *
+INTO
+    [cosmosSamples]
+FROM
+    [EventHubIn]  
+
+SELECT
+    *
+INTO
+  [cosmosEvents]
+FROM
+    [EventHubEventsIn]  
+
+
+SELECT
+    *
+INTO
+    [samplesTable]
+FROM
+    [EventHubIn]  
+
+SELECT
+    *
+INTO
+  [samplestsihub]
+FROM
+    [EventHubIn]      
+
+SELECT
+    *
+INTO
+    [eventsTable]
+FROM
+    [EventHubEventsIn]    
+
+SELECT
+    *
+INTO
+    [conditionsTable]
+FROM
+    [EventHubConditions]      
+
+ SELECT
+    *
+INTO
+    [samplesBlob]
+FROM
+    [EventHubIn]  
+
+SELECT
+    *
+INTO
+    [eventsBlob]
+FROM
+    [EventHubEventsIn]      
+
+
+-- SELECT SampleTimestamp, DeviceName, ComponentName, avg(cast(SampleValue AS float)) AS Average FROM [SamplesLocal] WHERE SampleName = 'S2Temp' GROUP BY SampleTimestamp, DeviceName, ComponentName, TumblingWindow(minute, 10)
+--SELECT SampleTimestamp, DeviceName, ComponentName, cast(SampleValue AS float) AS Average FROM [SamplesLocal] WHERE SampleName = 'S2temp'
+SELECT  System.TimeStamp AS WindowTime, DeviceName, ComponentName, avg(cast(SampleValue as float)) AS Average
+FROM s2tempsamples timestamp by SampleTimestamp
+WHERE SampleName = 'S2temp' AND TRY_CAST(SampleValue AS float) IS NOT NULL   AND DeviceName = 'Mazak01' 
+-- GROUP BY SampleTimestamp, DeviceName, ComponentName, HoppingWindow(second, 300, 5)
+GROUP BY SampleTimestamp, DeviceName, ComponentName, tumblingwindow(second, 5)
+
+*/
+
+WITH AggregationStep AS 
+    (
+         SELECT
+               System.Timestamp as tumblingWindowEnd,
+
+               AVG(SampleValue) as avgValue
+
+         FROM s2tempsamples timestamp by SampleTimestamp
+         WHERE SampleName = 'S2temp' AND TRY_CAST(SampleValue AS float) IS NOT NULL AND DeviceName = 'Mazak01' 
+         GROUP BY TumblingWindow(second, 5)
+    ),
+
+    FillInMissingValuesStep AS
+    (
+          SELECT
+                System.Timestamp AS hoppingWindowEnd,
+
+                TopOne() OVER (ORDER BY tumblingWindowEnd DESC) AS lastEvent
+
+         FROM AggregationStep
+         GROUP BY HOPPINGWINDOW(second, 300, 5)
+
+    ),
+
+    AnomalyDetectionStep AS
+    (
+
+          SELECT
+                hoppingWindowEnd,
+                lastEvent.tumblingWindowEnd as lastTumblingWindowEnd,
+                lastEvent.avgValue as lastEventAvgValue,
+                system.timestamp as anomalyDetectionStepTimestamp,
+
+                ANOMALYDETECTION(lastEvent.avgValue) OVER (LIMIT DURATION(hour, 1)) as
+                scores
+
+          FROM FillInMissingValuesStep
+    )
+
+    SELECT
+          alert = 1,
+          hoppingWindowEnd,
+          lastTumblingWindowEnd,
+          lastEventAvgValue,
+          anomalyDetectionStepTimestamp,
+          scores
+
+    INTO output
+
+    FROM AnomalyDetectionStep
+
+    WHERE
+        CAST(GetRecordPropertyValue(scores, 'BiLevelChangeScore') as float) >= 3.25
+       OR CAST(GetRecordPropertyValue(scores, 'SlowNegTrendScore') as float) >=
+       3.25

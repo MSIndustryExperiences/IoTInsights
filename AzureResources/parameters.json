@@ -1,0 +1,249 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "databaseAccounts_smstestsmsdocs_name": {
+            "value": null
+        },
+        "servers_smstestsmsdata_name": {
+            "value": null
+        },
+        "workflows_ReadSMS_name": {
+            "value": null
+        },
+        "connections_azureblob_name": {
+            "value": null
+        },
+        "connections_office365_name": {
+            "value": null
+        },
+        "connections_documentdb_name": {
+            "value": null
+        },
+        "connections_azurequeues_name": {
+            "value": null
+        },
+        "serverfarms_CentralUSPlan_name": {
+            "value": null
+        },
+        "components_smsprocess_name": {
+            "value": null
+        },
+        "namespaces_smsevents_ns_name": {
+            "value": null
+        },
+        "components_smssampleparse_name": {
+            "value": null
+        },
+        "namespaces_smssampleevents_name": {
+            "value": null
+        },
+        "storageAccounts_smstestsmsstore_name": {
+            "value": null
+        },
+        "servers_smsanalysis_name": {
+            "value": null
+        },
+        "integrationAccounts_SMSTestBed_name": {
+            "value": null
+        },
+        "storageAccounts_smstestdiagstore_name": {
+            "value": null
+        },
+        "streamingjobs_testjob_name": {
+            "value": null
+        },
+        "databaseAccounts_smstestsmsdocs_name_1": {
+            "value": null
+        },
+        "environments_smstsi_name": {
+            "value": null
+        },
+        "streamingjobs_processsms_name": {
+            "value": null
+        },
+        "advisors_DropIndex_name": {
+            "value": null
+        },
+        "keys_ServiceManaged_name": {
+            "value": null
+        },
+        "advisors_CreateIndex_name": {
+            "value": null
+        },
+        "databases_smstestsmsdata_name": {
+            "value": null
+        },
+        "environments_smstesttsisandbox_name": {
+            "value": null
+        },
+        "registries_smstestdockerregistry_name": {
+            "value": null
+        },
+        "advisors_DefragmentIndex_name": {
+            "value": null
+        },
+        "auditingPolicies_Default_name": {
+            "value": null
+        },
+        "advisors_ForceLastGoodPlan_name": {
+            "value": null
+        },
+        "advisors_DbParameterization_name": {
+            "value": null
+        },
+        "encryptionProtector_current_name": {
+            "value": null
+        },
+        "containerGroups_flattenadnpostsms_name": {
+            "value": null
+        },
+        "firewallRules_Kate's_IP_(Home)_name": {
+            "value": null
+        },
+        "eventhubs_samplestsihub_name": {
+            "value": null
+        },
+        "eventhubs_smsflatevents_name": {
+            "value": null
+        },
+        "eventhubs_smsflatsamples_name": {
+            "value": null
+        },
+        "inputs_EventHubIn_name": {
+            "value": null
+        },
+        "outputs_eventsBlob_name": {
+            "value": null
+        },
+        "eventhubs_smsflatconditions_name": {
+            "value": null
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": null
+        },
+        "outputs_eventsTable_name": {
+            "value": null
+        },
+        "outputs_samplesBlob_name": {
+            "value": null
+        },
+        "outputs_cosmosEvents_name": {
+            "value": null
+        },
+        "outputs_samplesTable_name": {
+            "value": null
+        },
+        "advisors_DropIndex_name_1": {
+            "value": null
+        },
+        "outputs_cosmosSamples_name": {
+            "value": null
+        },
+        "outputs_samplestsihub_name": {
+            "value": null
+        },
+        "eventsources_SMSSamples_name": {
+            "value": null
+        },
+        "advisors_CreateIndex_name_1": {
+            "value": null
+        },
+        "auditingPolicies_Default_name_1": {
+            "value": null
+        },
+        "databases_master_name": {
+            "value": null
+        },
+        "inputs_EventHubEventsIn_name": {
+            "value": null
+        },
+        "outputs_conditionsTable_name": {
+            "value": null
+        },
+        "geoBackupPolicies_Default_name": {
+            "value": null
+        },
+        "inputs_EventHubConditions_name": {
+            "value": null
+        },
+        "schemas_MTConnectError_1.3_1.0_name": {
+            "value": null
+        },
+        "schemas_MTConnectAssets_1.3_1.0_name": {
+            "value": null
+        },
+        "advisors_DefragmentIndex_name_1": {
+            "value": null
+        },
+        "auditingPolicies_Default_name_2": {
+            "value": null
+        },
+        "schemas_MTConnectDevices_1.3_1.0_name": {
+            "value": null
+        },
+        "schemas_MTConnectStreams_1.3_1.0_name": {
+            "value": null
+        },
+        "geoBackupPolicies_Default_name_1": {
+            "value": null
+        },
+        "firewallRules_ClientIPAddress_2018_9_11_9_58_25_name": {
+            "value": null
+        },
+        "advisors_ForceLastGoodPlan_name_1": {
+            "value": null
+        },
+        "advisors_DbParameterization_name_1": {
+            "value": null
+        },
+        "firewallRules_ClientIPAddress_2018_09_11_05:09:35_name": {
+            "value": null
+        },
+        "transparentDataEncryption_current_name": {
+            "value": null
+        },
+        "accesspolicies_ownerAccessPolicyName_name": {
+            "value": null
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "value": null
+        },
+        "transparentDataEncryption_current_name_1": {
+            "value": null
+        },
+        "consumergroups_$Default_name": {
+            "value": null
+        },
+        "consumergroups_$Default_name_1": {
+            "value": null
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name_1": {
+            "value": null
+        },
+        "outputs_SmsTotalSamplesPerDevicePowerBi_name": {
+            "value": null
+        },
+        "consumergroups_$Default_name_2": {
+            "value": null
+        },
+        "accesspolicies_ownerAccessPolicyName_name_1": {
+            "value": null
+        },
+        "authorizationRules_listener_name": {
+            "value": null
+        },
+        "authorizationRules_send_name": {
+            "value": null
+        },
+        "consumergroups_$Default_name_3": {
+            "value": null
+        },
+        "authorizationRules_eventssend_name": {
+            "value": null
+        },
+        "authorizationRules_SendPolicy_name": {
+            "value": null
+        }
+    }
+}

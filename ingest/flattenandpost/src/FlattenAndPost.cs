@@ -9,7 +9,6 @@ namespace FlattenAndPost
 
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Host;
-    using Microsoft.Azure.WebJobs.ServiceBus;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Table;
 
@@ -83,42 +82,41 @@ namespace FlattenAndPost
             else
             {
                 var nonEmptyConditions = sampleResult.Streams.Where(
-                        s => s.ComponentStream != null
-                             && s.ComponentStream.All(cs => cs.Condition != null && cs.Condition.Any()))
-                    .ToList();
+                    s => s.ComponentStream != null
+                         && s.ComponentStream.All(cs => cs.Condition != null && cs.Condition.Any())).ToList();
 
                 conditions = nonEmptyConditions.SelectMany(
                     s => s.ComponentStream.SelectMany(
                         cs => cs.Condition.Select(
                             c => new ConditionsRecord
-                            {
-                                HourWindow =
-                                    new DateTime(
-                                        c.timestamp.Year,
-                                        c.timestamp.Month,
-                                        c.timestamp.Day,
-                                        c.timestamp.Hour,
-                                        0,
-                                        0),
-                                Id = Guid.NewGuid().ToString(),
-                                DeviceName = s?.name,
-                                DeviceId = s?.uuid,
-                                Component = cs?.component,
-                                ComponentName = cs?.name,
-                                ComponentId = cs?.componentId,
-                                ConditionDataItemId = c?.dataItemId,
-                                ConditionTimestamp = c?.timestamp,
-                                ConditionName = c?.name,
-                                ConditionSequence = c?.sequence,
-                                ConditionSubtype = c?.subType,
-                                ConditionValue = c?.Value,
-                                ConditionNativeCode = c?.nativeCode,
-                                ConditionNativeSeverity = c?.nativeSeverity,
-                                ConditionQualifier = c?.qualifier,
-                                ConditionQualifierSpecified = c?.qualifierSpecified,
-                                ConditionStatistic = c?.statistic,
-                                ConditionType = c?.type
-                            }))).OrderBy(r => r.ConditionSequence).ToList();
+                                     {
+                                         HourWindow =
+                                             new DateTime(
+                                                 c.timestamp.Year,
+                                                 c.timestamp.Month,
+                                                 c.timestamp.Day,
+                                                 c.timestamp.Hour,
+                                                 0,
+                                                 0),
+                                         Id = Guid.NewGuid().ToString(),
+                                         DeviceName = s?.name,
+                                         DeviceId = s?.uuid,
+                                         Component = cs?.component,
+                                         ComponentName = cs?.name,
+                                         ComponentId = cs?.componentId,
+                                         ConditionDataItemId = c?.dataItemId,
+                                         ConditionTimestamp = c?.timestamp,
+                                         ConditionName = c?.name,
+                                         ConditionSequence = c?.sequence,
+                                         ConditionSubtype = c?.subType,
+                                         ConditionValue = c?.Value,
+                                         ConditionNativeCode = c?.nativeCode,
+                                         ConditionNativeSeverity = c?.nativeSeverity,
+                                         ConditionQualifier = c?.qualifier,
+                                         ConditionQualifierSpecified = c?.qualifierSpecified,
+                                         ConditionStatistic = c?.statistic,
+                                         ConditionType = c?.type
+                                     }))).OrderBy(r => r.ConditionSequence).ToList();
             }
 
             log.Info($"{conditions.Count()} conditions found.");
@@ -127,7 +125,6 @@ namespace FlattenAndPost
                 var flatCondition = JsonConvert.SerializeObject(conditionsRecord);
 
                 await asyncEventCollector.AddAsync(flatCondition);
-                //await asyncConditionTableCollector.AddAsync(new ConditionsTableRecord(conditionsRecord));
             }
         }
 
@@ -175,29 +172,29 @@ namespace FlattenAndPost
                     s => s.ComponentStream.SelectMany(
                         cs => cs.Events.Select(
                             e => new EventRecord()
-                            {
-                                HourWindow =
-                                    new DateTime(
-                                        e.timestamp.Year,
-                                        e.timestamp.Month,
-                                        e.timestamp.Day,
-                                        e.timestamp.Hour,
-                                        0,
-                                        0),
-                                Id = Guid.NewGuid().ToString(),
-                                DeviceName = s?.name,
-                                DeviceId = s?.uuid,
-                                Component = cs?.component,
-                                ComponentName = cs?.name,
-                                ComponentId = cs?.componentId,
-                                EventDataItemId = e?.dataItemId,
-                                EventTimestamp = e?.timestamp,
-                                EventName = e?.name,
-                                EventType = e.GetType().Name,
-                                EventSequence = e?.sequence,
-                                EventSubtype = e?.subType,
-                                EventValue = e?.Value
-                            }))).OrderBy(r => r.EventSequence).ToList();
+                                     {
+                                         HourWindow =
+                                             new DateTime(
+                                                 e.timestamp.Year,
+                                                 e.timestamp.Month,
+                                                 e.timestamp.Day,
+                                                 e.timestamp.Hour,
+                                                 0,
+                                                 0),
+                                         Id = Guid.NewGuid().ToString(),
+                                         DeviceName = s?.name,
+                                         DeviceId = s?.uuid,
+                                         Component = cs?.component,
+                                         ComponentName = cs?.name,
+                                         ComponentId = cs?.componentId,
+                                         EventDataItemId = e?.dataItemId,
+                                         EventTimestamp = e?.timestamp,
+                                         EventName = e?.name,
+                                         EventType = e.GetType().Name,
+                                         EventSequence = e?.sequence,
+                                         EventSubtype = e?.subType,
+                                         EventValue = e?.Value
+                                     }))).OrderBy(r => r.EventSequence).ToList();
             }
 
             log.Info($"{events.Count()} events found.");
@@ -206,7 +203,7 @@ namespace FlattenAndPost
                 var flatEvent = JsonConvert.SerializeObject(eventRecord);
 
                 await asyncEventCollector.AddAsync(flatEvent);
-               // await asyncEventTableCollector.AddAsync(new EventTableRecord(eventRecord));
+                // await asyncEventTableCollector.AddAsync(new EventTableRecord(eventRecord));
             }
         }
 
@@ -223,6 +220,7 @@ namespace FlattenAndPost
             }
             else
             {
+                // Filter out the streams with no members
                 var nonEmptySamples = sampleResult.Streams.Where(
                     s => s.ComponentStream != null
                          && s.ComponentStream.All(cs => cs.Samples != null && cs.Samples.Any())).ToList();
@@ -231,8 +229,8 @@ namespace FlattenAndPost
                     s => s.ComponentStream.SelectMany(
                         cs => cs.Samples.Select(
                             sample => new SampleRecord()
-                            {
-                                HourWindow =
+                                          {
+                                              HourWindow =
                                                   new DateTime(
                                                       sample.timestamp.Year,
                                                       sample.timestamp.Month,
@@ -240,24 +238,24 @@ namespace FlattenAndPost
                                                       sample.timestamp.Hour,
                                                       0,
                                                       0),
-                                Id = Guid.NewGuid().ToString(),
-                                DeviceName = s?.name,
-                                DeviceId = s?.uuid,
-                                Component = cs?.component,
-                                ComponentName = cs?.name,
-                                ComponentId = cs?.componentId,
-                                SampleDataItemId = sample?.dataItemId,
-                                SampleTimestamp = sample?.timestamp,
-                                SampleName = sample?.name,
-                                SampleSequence = sample?.sequence,
-                                SampleType = sample.GetType().Name,
-                                SampleSubtype = sample?.subType,
-                                SampleDuration = sample?.duration,
-                                SampleDurationSpecified = sample?.durationSpecified,
-                                SampleRate = sample?.sampleRate,
-                                SampleStatistic = sample?.statistic,
-                                SampleValue = sample?.Value
-                            }))).OrderBy(r => r.SampleSequence).ToList();
+                                              Id = Guid.NewGuid().ToString(),
+                                              DeviceName = s?.name,
+                                              DeviceId = s?.uuid,
+                                              Component = cs?.component,
+                                              ComponentName = cs?.name,
+                                              ComponentId = cs?.componentId,
+                                              SampleDataItemId = sample?.dataItemId,
+                                              SampleTimestamp = sample?.timestamp,
+                                              SampleName = sample?.name,
+                                              SampleSequence = sample?.sequence,
+                                              SampleType = sample.GetType().Name,
+                                              SampleSubtype = sample?.subType,
+                                              SampleDuration = sample?.duration,
+                                              SampleDurationSpecified = sample?.durationSpecified,
+                                              SampleRate = sample?.sampleRate,
+                                              SampleStatistic = sample?.statistic,
+                                              SampleValue = sample?.Value
+                                          }))).OrderBy(r => r.SampleSequence).ToList();
             }
 
             log.Info($"{samples.Count()} samples found.");
@@ -266,38 +264,21 @@ namespace FlattenAndPost
                 var flatSample = JsonConvert.SerializeObject(sample);
 
                 await asyncCollector.AddAsync(flatSample);
-                //await asyncSampleTableCollector.AddAsync(new SampleTableRecord(sample));
             }
         }
     }
 
     public class ConditionsRecord
     {
-        public DateTime HourWindow { get; set; }
-
-        public string Id { get; set; }
-
-        public string DeviceName { get; set; }
-
-        public string DeviceId { get; set; }
-
         public string Component { get; set; }
-
-        public string ComponentName { get; set; }
 
         public string ComponentId { get; set; }
 
+        public string ComponentName { get; set; }
+
         public string ConditionDataItemId { get; set; }
 
-        public DateTime? ConditionTimestamp { get; set; }
-
         public string ConditionName { get; set; }
-
-        public string ConditionSequence { get; set; }
-
-        public string ConditionSubtype { get; set; }
-
-        public string ConditionValue { get; set; }
 
         public string ConditionNativeCode { get; set; }
 
@@ -307,9 +288,25 @@ namespace FlattenAndPost
 
         public bool? ConditionQualifierSpecified { get; set; }
 
+        public string ConditionSequence { get; set; }
+
         public string ConditionStatistic { get; set; }
 
+        public string ConditionSubtype { get; set; }
+
+        public DateTime? ConditionTimestamp { get; set; }
+
         public string ConditionType { get; set; }
+
+        public string ConditionValue { get; set; }
+
+        public string DeviceId { get; set; }
+
+        public string DeviceName { get; set; }
+
+        public DateTime HourWindow { get; set; }
+
+        public string Id { get; set; }
     }
 
     public class EventRecord
@@ -334,13 +331,13 @@ namespace FlattenAndPost
 
         public DateTime? EventTimestamp { get; set; }
 
-        public string EventValue { get; set; }
+        public string EventType { get; set; }
 
-        public string Id { get; set; }
+        public string EventValue { get; set; }
 
         public DateTime HourWindow { get; set; }
 
-        public string EventType { get; set; }
+        public string Id { get; set; }
     }
 
     public class SampleRecord
@@ -358,6 +355,8 @@ namespace FlattenAndPost
         public string DeviceId { get; set; }
 
         public string DeviceName { get; set; }
+
+        public DateTime HourWindow { get; set; }
 
         public string Id { get; set; }
 
@@ -379,14 +378,13 @@ namespace FlattenAndPost
 
         public DateTime? SampleTimestamp { get; set; }
 
-        public string SampleValue { get; set; }
-
-        public DateTime HourWindow { get; set; }
-
         public string SampleType { get; set; }
+
+        public string SampleValue { get; set; }
     }
 
-    public abstract class EntityAdapter<T> : ITableEntity where T : new()
+    public abstract class EntityAdapter<T> : ITableEntity
+        where T : new()
     {
         public EntityAdapter()
         {
@@ -398,7 +396,7 @@ namespace FlattenAndPost
             this.InnerObject = innerObject;
         }
 
-        protected T InnerObject { get; set; }
+        public string ETag { get; set; }
 
         public string PartitionKey
         {
@@ -407,19 +405,15 @@ namespace FlattenAndPost
             set => this.PartitionKey = value;
         }
 
-        protected abstract string GetPartitionKey();
-
         public string RowKey
         {
-            get => GetRowKey();
+            get => this.GetRowKey();
             set => this.RowKey = value;
         }
 
-        protected abstract string GetRowKey();
-
         public DateTimeOffset Timestamp { get; set; }
 
-        public string ETag { get; set; }
+        protected T InnerObject { get; set; }
 
         public void ReadEntity(IDictionary<string, EntityProperty> properties, OperationContext operationContext)
         {
@@ -428,18 +422,22 @@ namespace FlattenAndPost
             TableEntity.ReadUserObject(this.InnerObject, properties, operationContext);
         }
 
-   
         public IDictionary<string, EntityProperty> WriteEntity(OperationContext operationContext)
         {
             var properties = TableEntity.WriteUserObject(this.InnerObject, operationContext);
 
             return properties;
         }
+
+        protected abstract string GetPartitionKey();
+
+        protected abstract string GetRowKey();
     }
 
     public class ConditionsTableRecord : EntityAdapter<ConditionsRecord>
     {
-        public ConditionsTableRecord(ConditionsRecord innerObject) : base(innerObject)
+        public ConditionsTableRecord(ConditionsRecord innerObject)
+            : base(innerObject)
         {
         }
 
@@ -452,11 +450,12 @@ namespace FlattenAndPost
         {
             return this.InnerObject.ConditionSequence;
         }
-        }
+    }
 
     public class EventTableRecord : EntityAdapter<EventRecord>
     {
-        public EventTableRecord(EventRecord innerObject) : base(innerObject)
+        public EventTableRecord(EventRecord innerObject)
+            : base(innerObject)
         {
         }
 
@@ -473,7 +472,8 @@ namespace FlattenAndPost
 
     public class SampleTableRecord : EntityAdapter<SampleRecord>
     {
-        public SampleTableRecord(SampleRecord innerObject) : base(innerObject)
+        public SampleTableRecord(SampleRecord innerObject)
+            : base(innerObject)
         {
         }
 
